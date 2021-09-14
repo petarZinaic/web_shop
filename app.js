@@ -2,14 +2,14 @@ const express = require("express");
 
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
+const expressValidator = require("express-validator");
 require("dotenv").config();
 
 const userRoutes = require("./routes/user");
 
 
 const app = express();
-app.use(express.json());  
 
 mongoose
   .connect(process.env.DATABASE, {
@@ -20,7 +20,9 @@ mongoose
 
 // middlewares
 app.use(morgan("dev"));
-app.use(cookieParser())  
+app.use(express.json());  
+app.use(cookieParser());
+app.use(expressValidator());  
 
 app.use("/api", userRoutes);    
 
