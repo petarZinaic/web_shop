@@ -51,3 +51,11 @@ exports.signout = (req, res) => {
    res.json({ message: "Signout success" });      
    
 }
+
+
+exports.requireSignin = epxressJwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ["HS256"], // added later
+    userProperty: "auth",
+  });
+
