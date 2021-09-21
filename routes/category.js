@@ -9,7 +9,7 @@ const { userById } = require("../controllers/user");
  
 router.post("/category/create/:userId", requireSignin, isAuth, isAdmin ,create);
 
-router.param("useId", userById);
+router.param("userId", userById);
 
 
 
