@@ -7,7 +7,7 @@ const { userById } = require("../controllers/user");
 
 
  
-router.post("/category/create/:userId", requireSignin, isAuth, isAdmin ,create);
+router.post("/category/create/:userId", requireSignin, isAdmin ,create);
 
 router.param("userId", userById);
 

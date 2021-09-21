@@ -37,7 +37,7 @@ exports.signin = (req, res) => {
             })
         }
         // generate a signed token with user id and secret
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET);
         // persist the token as "t" in cookie with expiry date
         res.cookie("t", token, { expire: new Date() + 9999 });
         // return reposnse with user and token to fronetend client 
@@ -72,7 +72,7 @@ exports.requireSignin = epxressJwt({
   }
 
   exports.isAdmin = (req, res, next) => {
-      if(req.profile.role === 0) {
+      if(req.profile.role !== 1) {
           return res.status(403).json({
               error: "Admin resourse! Access denied"
           });
