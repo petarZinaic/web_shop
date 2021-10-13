@@ -1,3 +1,4 @@
+const { errorHandler } = require("../helpers/dbErrorHandler");
 const User = require("../models/user");    
 
 exports.userById = (req, res, next, id) => {
@@ -34,3 +35,4 @@ exports.update = (req, res) => {
         res.json(user);
     });
 };
+
